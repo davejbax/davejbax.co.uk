@@ -1,0 +1,33 @@
+.side-nav > div {
+    margin-bottom: 1em;
+    color: $hyperlink;
+}
+
+.side-nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.side-nav ul li a {
+    text-transform: lowercase;
+    white-space: nowrap;
+
+    &:before {
+        content: '\23F5';
+        margin-right: 1ch;
+    }
+
+    &:after {
+        content: '/';
+        color: $fgDark;
+    }
+}
+
+.side-nav ul li {
+    padding-right: 2em;
+}
+
+.side-nav ul li.active {
+    background: $bgLessLight;
+}

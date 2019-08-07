@@ -1,0 +1,11 @@
+links:
+  - title: Home
+    url: /
+  - title: Portfolio
+    url: /portfolio.html
+  - title: Blog
+    url: /blog.html
+  - title: Other Stuff
+    url: /other.html
+  - title: Contact
+    url: /contact.html

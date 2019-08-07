@@ -1,0 +1,75 @@
+@import 'colors';
+@import 'window';
+@import 'nav';
+
+$lineHeight: 1.2em;
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background: #CCC;
+}
+
+body {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 20px;
+    color: $fgLight;
+    line-height: 1.2em;
+}
+
+a {
+    text-decoration: none;
+    color: $hyperlink;
+}
+
+.comment {
+    color: $comment;
+}
+
+strong, b {
+    color: $bold;
+}
+
+pre, p, h1, h2, h3, h4, h5 {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    margin-top: $lineHeight;
+}
+
+h2 {
+    $fontSize: 1.5em;
+    font-size: $fontSize;
+
+    // We set the height equal to one line
+    height: #{$lineHeight / $fontSize}em;
+
+    // Adjust margins above and below, so that we are
+    // centered across two lines; i.e. half a line above,
+    // half below
+    margin-top: #{$lineHeight / (1 * $fontSize)}em;
+    margin-bottom: #{1 * $lineHeight / (1 * $fontSize)}em;
+}
+
+h3 {
+    $fontSize: 1.2em;
+    font-size: $fontSize;
+    height: #{$lineHeight / $fontSize}em;
+    margin-top: #{$lineHeight / $fontSize}em;
+
+    color: $headingSmall;
+}
+
+h4 {
+    $fontSize: 1em;
+    font-size: $fontSize;
+    height: #{$lineHeight / $fontSize}em;
+    margin-top: #{$lineHeight / $fontSize}em;
+
+    color: $headingSmaller;
+}
