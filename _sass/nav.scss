@@ -25,7 +25,13 @@
 }
 
 .side-nav ul li {
+    padding: 0;
     padding-right: 2em;
+
+    &:before {
+        content: '';
+        margin: 0;
+    }
 }
 
 .side-nav ul li.active {
