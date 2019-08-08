@@ -7,6 +7,8 @@ title: About &middot; David Baxter
 
 I'm currently in my second year at the University of Manchester, studying for an undergraduate degree in Computer Science.
 
+My interests include **software engineering** (with experience in a wide variety of languages and tools), **cyber security** (with a focus on pen-testing and reverse engineering), and **artificial intelligence**.
+
 In my spare time, I like to work on side projects. These can be viewed on [Github](https://github.com/davejbax).
 
 ### Achivements
