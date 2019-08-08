@@ -20,9 +20,11 @@
 
 */
 
+$headerHeight: 1.5rem;
+
 .window__header {
     display: flex;
-    height: 1.5em;
+    height: $headerHeight;
     line-height: 1.5em;
 
     background: $bgLight;
@@ -59,6 +61,10 @@
     &.window-buttons__max { background: $green; }
 }
 
+.window-title {
+    overflow: hidden;
+}
+
 .window-title h1 {
     width: 100%;
     margin: 0;
@@ -68,6 +74,10 @@
     text-align: center;
 
     color: $fgLight;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;    
+    overflow: hidden;
 }
 
 /*
@@ -111,4 +121,69 @@ $lineNumWidth: 4ch;
     color: $bgLight;
 
     overflow: hidden;
+}
+
+/*
+    Mobile
+*/
+// @media screen and (max-width: 768px) {
+//     .window {
+//         width: auto;
+//         margin: 1rem;
+//     }
+
+//     .window__body {
+//         flex-direction: column;
+//     }
+
+//     .window__body > aside {
+//         border-right: none;
+//         border-bottom: 2px solid $bgLight;
+//     }
+// }
+
+// @media screen and (max-width: 375px) {
+//     html, body {
+//         height: 100%;
+//     }
+
+//     .window {
+//         margin: 0;
+//         height: 100%;
+//     }
+
+//     .window__body {
+//         min-height: 100%;
+//         margin-bottom: -$headerHeight;
+//     }
+// }
+@media screen and (max-width: $bpTablet) {
+
+    html, body {
+        height: 100%;
+    }
+
+    .window {
+        width: auto;
+        margin: 0;
+        height: 100%;
+    }
+
+    .window__header {
+        border-radius: 0;
+    }
+
+    .window__body {
+        flex-direction: column;
+    }
+
+    .window__body > aside {
+        border-right: none;
+        border-bottom: 2px solid $bgLight;
+    }
+
+    .window__body {
+        min-height: 100%;
+        margin-bottom: -$headerHeight;
+    }
 }

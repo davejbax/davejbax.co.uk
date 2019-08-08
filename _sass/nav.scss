@@ -1,6 +1,12 @@
 .side-nav > div {
     margin-bottom: 1em;
     color: $hyperlink;
+
+    // On mobile, we need the vertical screen space.
+    // Don't waste it with dumb gimmicks
+    @media screen and (max-width: $bpMobile) {
+        display: none;
+    }
 }
 
 .side-nav ul {
@@ -12,22 +18,40 @@
 .side-nav ul li a {
     text-transform: lowercase;
     white-space: nowrap;
+    display: block;
+    padding-right: 2em;
 
     &:before {
-        content: '\23F5';
-        margin-right: 1ch;
+        content: '';
+        display: inline-block;
+        height: 0;
+        border-top: 0.6ch solid transparent;
+        border-bottom: 0.6ch solid transparent;
+        border-left: 0.6ch solid $hyperlink;
+        
+        margin: 0;
+        padding: 0;
+        max-height: 0;
+        margin-left: 0.8ch;
+        margin-right: 1.5ch;
     }
 
     &:after {
         content: '/';
         color: $fgDark;
     }
+
+    // On tablet etc., we go vertical nav, so we don't
+    // need the padding
+    @media screen and (max-width: $bpTablet) {
+        padding-right: 0;
+    }
 }
 
 .side-nav ul li {
     padding: 0;
-    padding-right: 2em;
 
+    // Disable regular list styling that we made
     &:before {
         content: '';
         margin: 0;
