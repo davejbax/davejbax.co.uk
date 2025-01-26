@@ -6,7 +6,9 @@
     // On mobile, we need the vertical screen space.
     // Don't waste it with dumb gimmicks
     @media screen and (max-width: $bpMobile) {
-        display: none;
+        &.gimmick {
+            display: none;
+        }
     }
 }
 
@@ -65,6 +67,10 @@
 
 .side-nav .eye-strain {
     padding: $globalPadding 0;
+
+    @media screen and (max-width: $bpMobile) {
+        padding: 0;
+    }
 }
 
 #toggle-eye-strain {
@@ -77,6 +83,7 @@
     background: none;
     border: none;
     width: 100%;
+    line-height: inherit;
     text-align: left;
 
     color: var(--color-hyperlink);

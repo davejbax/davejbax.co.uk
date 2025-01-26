@@ -1,5 +1,3 @@
-@import 'colors';
-
 /*
 
     Window
@@ -56,7 +54,7 @@ $headerHeight: 1.5rem;
     width: 1em;
     height: 1em;
 
-    background: $fgLight;
+    background: var(--color-fgLight);
     border-radius: 50%;
     vertical-align: middle;
 
@@ -67,15 +65,15 @@ $headerHeight: 1.5rem;
     }
 
     &.window-buttons__close {
-        background: $red;
+        background: var(--color-red);
     }
 
     &.window-buttons__min {
-        background: $yellow;
+        background: var(--color-yellow);
     }
 
     &.window-buttons__max {
-        background: $green;
+        background: var(--color-green);
     }
 }
 
@@ -109,6 +107,10 @@ $headerHeight: 1.5rem;
     overflow: auto;
 
     display: flex;
+
+    // On mobile, ensure that the body fills the screen, so the 'window' isn't
+    // cut short within the viewport.
+    flex: 1;
 }
 
 .window__body>aside {
@@ -127,6 +129,13 @@ $lineNumWidth: 4ch;
 
     overflow: auto;
     overflow-wrap: break-word;
+
+    @media screen and (max-width: $bpMobile) {
+        // On mobile, remove the body's padding. This makes for a more compact
+        // layout, as we can't afford the space waste.
+        padding-top: 0;
+        padding-bottom: 0;
+    }
 }
 
 .window__body .body__line-numbers {
@@ -140,42 +149,19 @@ $lineNumWidth: 4ch;
     color: var(--color-bgLight);
 
     overflow: hidden;
+
+    @media screen and (max-width: $bpMobile) {
+        // On mobile, we remove the body's padding so that we use the space
+        // more efficiently.
+        top: 0;
+        bottom: 0;
+    }
 }
 
 /*
     Mobile
 */
-// @media screen and (max-width: 768px) {
-//     .window {
-//         width: auto;
-//         margin: 1rem;
-//     }
 
-//     .window__body {
-//         flex-direction: column;
-//     }
-
-//     .window__body > aside {
-//         border-right: none;
-//         border-bottom: 2px solid $bgLight;
-//     }
-// }
-
-// @media screen and (max-width: 375px) {
-//     html, body {
-//         height: 100%;
-//     }
-
-//     .window {
-//         margin: 0;
-//         height: 100%;
-//     }
-
-//     .window__body {
-//         min-height: 100%;
-//         margin-bottom: -$headerHeight;
-//     }
-// }
 @media screen and (max-width: $bpTablet) {
 
     html,
@@ -186,7 +172,15 @@ $lineNumWidth: 4ch;
     .window {
         width: auto;
         margin: 0;
-        height: 100%;
+        min-height: 100%;
+
+        // Having a border radius exposes the background, which looks weird
+        // on a square screen...
+        border-radius: 0;
+
+        // Flex so that we can make the body grow to fill the whole screen
+        display: flex;
+        flex-direction: column;
     }
 
     .window__header {
@@ -199,11 +193,7 @@ $lineNumWidth: 4ch;
 
     .window__body>aside {
         border-right: none;
-        border-bottom: 2px solid $bgLight;
+        border-bottom: 2px solid var(--color-bgLight);
     }
 
-    .window__body {
-        min-height: 100%;
-        margin-bottom: -$headerHeight;
-    }
 }
