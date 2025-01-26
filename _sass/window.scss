@@ -9,7 +9,7 @@
 .window {
     width: 90vw;
     max-width: 960px;
-    margin: 2rem auto;
+    margin: 1.6rem auto;
 
     overflow: auto;
 }
@@ -38,10 +38,17 @@ $headerHeight: 1.5rem;
 .window-title {
     display: inline-flex;
 }
-.window-buttons { flex: 0; }
-.window-title { flex: 1; flex-basis: 100%; }
 
-.window-buttons > * {
+.window-buttons {
+    flex: 0;
+}
+
+.window-title {
+    flex: 1;
+    flex-basis: 100%;
+}
+
+.window-buttons>* {
     display: inline-block;
     width: 1em;
     height: 1em;
@@ -56,9 +63,17 @@ $headerHeight: 1.5rem;
         margin-left: 0.3em;
     }
 
-    &.window-buttons__close { background: $red; }
-    &.window-buttons__min { background: $yellow; }
-    &.window-buttons__max { background: $green; }
+    &.window-buttons__close {
+        background: $red;
+    }
+
+    &.window-buttons__min {
+        background: $yellow;
+    }
+
+    &.window-buttons__max {
+        background: $green;
+    }
 }
 
 .window-title {
@@ -76,7 +91,7 @@ $headerHeight: 1.5rem;
     color: $fgLight;
 
     white-space: nowrap;
-    text-overflow: ellipsis;    
+    text-overflow: ellipsis;
     overflow: hidden;
 }
 
@@ -93,7 +108,7 @@ $headerHeight: 1.5rem;
     display: flex;
 }
 
-.window__body > aside {
+.window__body>aside {
     flex: 0;
 
     border-right: 2px solid $bgLight;
@@ -101,7 +116,7 @@ $headerHeight: 1.5rem;
 
 $lineNumWidth: 4ch;
 
-.window__body > article {
+.window__body>article {
     flex: 1;
     position: relative;
     padding-left: $lineNumWidth + 1ch;
@@ -159,7 +174,8 @@ $lineNumWidth: 4ch;
 // }
 @media screen and (max-width: $bpTablet) {
 
-    html, body {
+    html,
+    body {
         height: 100%;
     }
 
@@ -177,7 +193,7 @@ $lineNumWidth: 4ch;
         flex-direction: column;
     }
 
-    .window__body > aside {
+    .window__body>aside {
         border-right: none;
         border-bottom: 2px solid $bgLight;
     }
