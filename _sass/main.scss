@@ -7,6 +7,52 @@ $globalPadding: 1.2rem;
 
 $lineHeight: 1.2rem;
 
+:root {
+    --color-red: #E3766B;
+    --color-yellow: #F7B726;
+    --color-green: #27A844;
+
+    --color-headingSmall: var(--color-fgDark);
+    --color-headingSmaller: var(--color-fgDark);
+}
+
+:root,
+:root.dark {
+    --color-bgPage: #28282c;
+    --color-bgDark: #1C1C1C;
+    --color-bgLight: #535358;
+    --color-bgLessLight: #333333;
+    --color-fgLight: #EEEEEE;
+    --color-fgDark: #b372b3;
+
+    --color-hyperlink: #88c3d5;
+    --color-comment: #809151;
+    --color-bold: #EEC95A;
+}
+
+@mixin lightMode() {
+    --color-bgPage: rgb(230, 227, 215);
+    --color-bgDark: white;
+    --color-bgLessLight: #d8d8d8;
+    --color-bgLight: #c4c1b5;
+    --color-fgLight: #333;
+    --color-fgDark: #d66f0f;
+
+    --color-hyperlink: #3292af;
+    --color-comment: #a2c279;
+    --color-bold: #d3a118;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        @include lightMode();
+    }
+}
+
+:root.light {
+    @include lightMode();
+}
+
 html,
 body {
     margin: 0;
@@ -14,7 +60,7 @@ body {
 }
 
 html {
-    background: $bgPage;
+    background: var(--color-bgPage);
 
     font-size: 20px;
 }
@@ -22,22 +68,22 @@ html {
 body {
     font-family: 'JetBrains Mono', monospace;
     font-size: 16px;
-    color: $fgLight;
+    color: var(--color-fgLight);
     line-height: $lineHeight;
 }
 
 a {
     text-decoration: none;
-    color: $hyperlink;
+    color: var(--color-hyperlink);
 }
 
 .comment {
-    color: $comment;
+    color: var(--color-comment);
 }
 
 strong,
 b {
-    color: $bold;
+    color: var(--color-bold);
 }
 
 pre,
@@ -75,7 +121,7 @@ h3 {
     height: $lineHeight;
     margin-top: $lineHeight;
 
-    color: $headingSmall;
+    color: var(--color-headingSmall);
 }
 
 h4 {
@@ -84,7 +130,7 @@ h4 {
     height: $lineHeight;
     margin-top: $lineHeight;
 
-    color: $headingSmaller;
+    color: var(--color-headingSmaller);
 }
 
 img {
@@ -109,7 +155,7 @@ ul li {
 
     &:before {
         content: '*';
-        color: $fgDark;
+        color: var(--color-fgDark);
         margin-left: -2ch;
         margin-right: 1ch;
     }

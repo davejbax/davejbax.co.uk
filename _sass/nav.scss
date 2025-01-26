@@ -1,7 +1,7 @@
 .side-nav>div {
     padding: $globalPadding;
 
-    color: $hyperlink;
+    color: var(--color-hyperlink);
 
     // On mobile, we need the vertical screen space.
     // Don't waste it with dumb gimmicks
@@ -29,7 +29,7 @@
         height: 0;
         border-top: 0.6ch solid transparent;
         border-bottom: 0.6ch solid transparent;
-        border-left: 0.6ch solid $hyperlink;
+        border-left: 0.6ch solid var(--color-hyperlink);
 
         margin: 0;
         padding: 0;
@@ -39,7 +39,7 @@
 
     &:after {
         content: '/';
-        color: $fgDark;
+        color: var(--color-fgDark);
     }
 
     // On tablet etc., we go vertical nav, so we don't
@@ -60,5 +60,5 @@
 }
 
 .side-nav ul li.active {
-    background: $bgLessLight;
+    background: var(--color-bgLessLight);
 }

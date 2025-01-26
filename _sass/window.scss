@@ -31,7 +31,7 @@ $headerHeight: 1.5rem;
     height: $headerHeight;
     line-height: 1.5em;
 
-    background: $bgLight;
+    background: var(--color-bgLight);
 
     align-items: center;
 }
@@ -91,7 +91,7 @@ $headerHeight: 1.5rem;
     font-weight: normal;
     text-align: center;
 
-    color: $fgLight;
+    color: var(--color-fgLight);
 
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -105,7 +105,7 @@ $headerHeight: 1.5rem;
 */
 
 .window__body {
-    background: $bgDark;
+    background: var(--color-bgDark);
     overflow: auto;
 
     display: flex;
@@ -114,7 +114,7 @@ $headerHeight: 1.5rem;
 .window__body>aside {
     flex: 0;
 
-    border-right: 2px solid $bgLight;
+    border-right: 2px solid var(--color-bgLight);
 }
 
 $lineNumWidth: 4ch;
@@ -137,7 +137,7 @@ $lineNumWidth: 4ch;
     width: $lineNumWidth;
 
     text-align: right;
-    color: $bgLight;
+    color: var(--color-bgLight);
 
     overflow: hidden;
 }
