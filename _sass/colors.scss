@@ -2,15 +2,16 @@ $red: #E3766B;
 $yellow: #F7B726;
 $green: #27A844;
 
+$bgPage: #28282c;
 $bgDark: #1C1C1C;
-$bgLight: #4A4A4A;
+$bgLight: #535358;
 $bgLessLight: #333333;
 $fgLight: #EEEEEE;
-$fgDark: #A17DA1;
+$fgDark: #b372b3;
 
-$hyperlink: #88B0D5;
-$comment: #919151;
+$hyperlink: #88c3d5;
+$comment: #809151;
 $bold: #EEC95A;
-//$headingSmall: #919151;
-$headingSmall: #887187;
-$headingSmaller: #887187;
+
+$headingSmall: $fgDark;
+$headingSmaller: $fgDark;

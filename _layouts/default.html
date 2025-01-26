@@ -1,49 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>{{ page.title }}</title>
+  <title>{{ page.title }}</title>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}" />
-  </head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}" />
+</head>
 
-  <body>
-    
-    <main class="window">
-      <header class="window__header">
-        <div class="window-buttons">
-          <span class="window-buttons__close"></span><span class="window-buttons__min">
-          </span><span class="window-buttons__max">
-          </span>
-        </div>
-        <div class="window-title">
-          <h1>{{ page.title }}</h1>
-        </div>
-      </header>
-      <div class="window__body">
-        <aside>
-          {% include nav.html %}
-        </aside>
-        <article>
-          <div class="body__line-numbers">
-            {% for i in (1..100) %}
-              {{ i }}<br>
-            {% endfor %}
-          </div>
-          <div markdown="1">
-            {{ content }}
-          </div>
-          <br>
-        </article>
+<body>
+
+  <main class="window">
+    <header class="window__header">
+      <div class="window-buttons">
+        <span class="window-buttons__close"></span><span class="window-buttons__min">
+        </span><span class="window-buttons__max">
+        </span>
       </div>
-    </main>
+      <div class="window-title">
+        <h1>{{ page.title }}</h1>
+      </div>
+    </header>
+    <div class="window__body">
+      <aside>
+        {% include nav.html %}
+      </aside>
+      <article>
+        <div class="body__line-numbers">
+          {% for i in (1..100) %}
+          {{ i }}<br>
+          {% endfor %}
+        </div>
+        <div markdown="1">
+          {{ content }}
+        </div>
+        <br>
+      </article>
+    </div>
+  </main>
 
-  </body>
+</body>
 
 </html>

@@ -12,6 +12,10 @@
     margin: 1.6rem auto;
 
     overflow: auto;
+
+    border-radius: 0.8rem;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 /*
@@ -28,8 +32,6 @@ $headerHeight: 1.5rem;
     line-height: 1.5em;
 
     background: $bgLight;
-    border-top-left-radius: 0.4rem;
-    border-top-right-radius: 0.4rem;
 
     align-items: center;
 }
@@ -41,6 +43,7 @@ $headerHeight: 1.5rem;
 
 .window-buttons {
     flex: 0;
+    margin-left: 0.2em;
 }
 
 .window-title {
@@ -119,6 +122,7 @@ $lineNumWidth: 4ch;
 .window__body>article {
     flex: 1;
     position: relative;
+    padding: $globalPadding;
     padding-left: $lineNumWidth + 1ch;
 
     overflow: auto;
@@ -127,8 +131,8 @@ $lineNumWidth: 4ch;
 
 .window__body .body__line-numbers {
     position: absolute;
-    top: 0;
-    bottom: 0;
+    top: $globalPadding;
+    bottom: $globalPadding;
     left: 0;
     width: $lineNumWidth;
 

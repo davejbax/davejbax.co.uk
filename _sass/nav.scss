@@ -1,5 +1,6 @@
-.side-nav > div {
-    margin-bottom: 1em;
+.side-nav>div {
+    padding: $globalPadding;
+
     color: $hyperlink;
 
     // On mobile, we need the vertical screen space.
@@ -19,7 +20,8 @@
     text-transform: lowercase;
     white-space: nowrap;
     display: block;
-    padding-right: 2em;
+    padding-left: $globalPadding;
+    padding-right: $globalPadding;
 
     &:before {
         content: '';
@@ -28,12 +30,11 @@
         border-top: 0.6ch solid transparent;
         border-bottom: 0.6ch solid transparent;
         border-left: 0.6ch solid $hyperlink;
-        
+
         margin: 0;
         padding: 0;
         max-height: 0;
-        margin-left: 0.8ch;
-        margin-right: 1.5ch;
+        margin-right: 1ch;
     }
 
     &:after {
