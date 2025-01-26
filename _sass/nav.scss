@@ -62,3 +62,53 @@
 .side-nav ul li.active {
     background: var(--color-bgLessLight);
 }
+
+.side-nav .eye-strain {
+    padding: $globalPadding 0;
+}
+
+#toggle-eye-strain {
+    cursor: pointer;
+    display: block;
+    padding: 0 $globalPadding;
+
+    font-family: inherit;
+    font-size: inherit;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+
+    color: var(--color-hyperlink);
+}
+
+// Default is to assume dark mode
+// Note: media queries don't affect specificity, so it's important this CSS rule
+// comes before the media queries, so that the media queries take precedence.
+#toggle-eye-strain:before {
+    content: 'light';
+}
+
+:root.color-alt #toggle-eye-strain:before {
+    content: 'dark';
+}
+
+@media (prefers-color-scheme: light) {
+    #toggle-eye-strain:before {
+        content: 'dark';
+    }
+
+    :root.color-alt #toggle-eye-strain:before {
+        content: 'light';
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    #toggle-eye-strain:before {
+        content: 'light';
+    }
+
+    :root.color-alt #toggle-eye-strain:before {
+        content: 'dark';
+    }
+}

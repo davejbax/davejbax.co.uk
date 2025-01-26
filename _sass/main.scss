@@ -16,8 +16,7 @@ $lineHeight: 1.2rem;
     --color-headingSmaller: var(--color-fgDark);
 }
 
-:root,
-:root.dark {
+@mixin darkMode() {
     --color-bgPage: #28282c;
     --color-bgDark: #1C1C1C;
     --color-bgLight: #535358;
@@ -43,14 +42,38 @@ $lineHeight: 1.2rem;
     --color-bold: #d3a118;
 }
 
+// Default to dark mode. I'm a light mode enjoyer, personally, but I think most
+// people are unfortunately wrong and prefer eye strain.
+:root {
+    @include darkMode();
+}
+
+:root.color-alt {
+    @include lightMode();
+}
+
 @media (prefers-color-scheme: light) {
     :root {
         @include lightMode();
     }
+
+    :root.color-alt {
+        @include darkMode();
+    }
 }
 
-:root.light {
-    @include lightMode();
+@media (prefers-color-scheme: dark) {
+    :root {
+        @include darkMode();
+    }
+
+    :root.color-alt {
+        @include lightMode();
+    }
+}
+
+* {
+    transition: background ease-in-out 0.2s;
 }
 
 html,
