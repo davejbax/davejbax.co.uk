@@ -71,7 +71,10 @@ $lineHeight: 1.2rem;
     }
 }
 
-* {
+// Conditionally enable color transitions, so that the user doesn't get an initial
+// color transition when they load the page and we determine that they'd set their
+// preference to the alternative color
+:root.color-transitions * {
     transition: background ease-in-out 0.2s;
 }
 
