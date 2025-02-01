@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Other Stuff &middot; David Baxter
+title: Other Stuff &middot; Dave Baxter
 ---
 ## Other stuff
 

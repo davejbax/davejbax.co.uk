@@ -1,6 +1,6 @@
 ---
 layout: default
-title: About &middot; David Baxter
+title: About &middot; Dave Baxter
 ---
 
 ## About

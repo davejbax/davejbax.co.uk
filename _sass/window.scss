@@ -150,6 +150,8 @@ $lineNumWidth: 4ch;
 
     overflow: hidden;
 
+    user-select: none;
+
     @media screen and (max-width: $bpMobile) {
         // On mobile, we remove the body's padding so that we use the space
         // more efficiently.
