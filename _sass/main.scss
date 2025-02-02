@@ -169,6 +169,11 @@ p:has(img) {
 
 .img-small {
     height: $lineHeight * 10;
+
+    @media screen and (max-width: $bpMobile) {
+        height: auto;
+        max-width: 100%;
+    }
 }
 
 ul {
