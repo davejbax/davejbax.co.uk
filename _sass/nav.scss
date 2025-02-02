@@ -1,11 +1,14 @@
-.side-nav > div {
-    margin-bottom: 1em;
-    color: $hyperlink;
+.side-nav>div {
+    padding: $globalPadding;
+
+    color: var(--color-hyperlink);
 
     // On mobile, we need the vertical screen space.
     // Don't waste it with dumb gimmicks
     @media screen and (max-width: $bpMobile) {
-        display: none;
+        &.gimmick {
+            display: none;
+        }
     }
 }
 
@@ -19,7 +22,8 @@
     text-transform: lowercase;
     white-space: nowrap;
     display: block;
-    padding-right: 2em;
+    padding-left: $globalPadding;
+    padding-right: $globalPadding;
 
     &:before {
         content: '';
@@ -27,18 +31,17 @@
         height: 0;
         border-top: 0.6ch solid transparent;
         border-bottom: 0.6ch solid transparent;
-        border-left: 0.6ch solid $hyperlink;
-        
+        border-left: 0.6ch solid var(--color-hyperlink);
+
         margin: 0;
         padding: 0;
         max-height: 0;
-        margin-left: 0.8ch;
-        margin-right: 1.5ch;
+        margin-right: 1ch;
     }
 
     &:after {
         content: '/';
-        color: $fgDark;
+        color: var(--color-fgDark);
     }
 
     // On tablet etc., we go vertical nav, so we don't
@@ -59,5 +62,60 @@
 }
 
 .side-nav ul li.active {
-    background: $bgLessLight;
+    background: var(--color-bgLessLight);
+}
+
+.side-nav .eye-strain {
+    padding: $globalPadding 0;
+
+    @media screen and (max-width: $bpMobile) {
+        padding: 0;
+    }
+}
+
+#toggle-eye-strain {
+    cursor: pointer;
+    display: block;
+    padding: 0 $globalPadding;
+
+    font-family: inherit;
+    font-size: inherit;
+    background: none;
+    border: none;
+    width: 100%;
+    line-height: inherit;
+    text-align: left;
+
+    color: var(--color-hyperlink);
+}
+
+// Default is to assume dark mode
+// Note: media queries don't affect specificity, so it's important this CSS rule
+// comes before the media queries, so that the media queries take precedence.
+#toggle-eye-strain:before {
+    content: 'light';
+}
+
+:root.color-alt #toggle-eye-strain:before {
+    content: 'dark';
+}
+
+@media (prefers-color-scheme: light) {
+    #toggle-eye-strain:before {
+        content: 'dark';
+    }
+
+    :root.color-alt #toggle-eye-strain:before {
+        content: 'light';
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    #toggle-eye-strain:before {
+        content: 'light';
+    }
+
+    :root.color-alt #toggle-eye-strain:before {
+        content: 'dark';
+    }
 }

@@ -1,40 +1,123 @@
+$globalPadding: 1.2rem;
+
 @import 'breakpoints';
-@import 'colors';
 @import 'window';
 @import 'nav';
 
-$lineHeight: 1.2em;
+$lineHeight: 1.2rem;
 
-html, body {
+:root {
+    --color-red: #E3766B;
+    --color-yellow: #F7B726;
+    --color-green: #27A844;
+
+    --color-headingSmall: var(--color-fgDark);
+    --color-headingSmaller: var(--color-fgDark);
+}
+
+@mixin darkMode() {
+    --color-bgPage: #28282c;
+    --color-bgDark: #1C1C1C;
+    --color-bgLight: #535358;
+    --color-bgLessLight: #333333;
+    --color-fgLight: #EEEEEE;
+    --color-fgDark: #b372b3;
+
+    --color-hyperlink: #88c3d5;
+    --color-comment: #809151;
+    --color-bold: #EEC95A;
+}
+
+@mixin lightMode() {
+    --color-bgPage: rgb(230, 227, 215);
+    --color-bgDark: white;
+    --color-bgLessLight: #d8d8d8;
+    --color-bgLight: #c4c1b5;
+    --color-fgLight: #333;
+    --color-fgDark: #d66f0f;
+
+    --color-hyperlink: #3292af;
+    --color-comment: #a2c279;
+    --color-bold: #d3a118;
+}
+
+// Default to dark mode. I'm a light mode enjoyer, personally, but I think most
+// people are unfortunately wrong and prefer eye strain.
+:root {
+    @include darkMode();
+}
+
+:root.color-alt {
+    @include lightMode();
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        @include lightMode();
+    }
+
+    :root.color-alt {
+        @include darkMode();
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        @include darkMode();
+    }
+
+    :root.color-alt {
+        @include lightMode();
+    }
+}
+
+// Conditionally enable color transitions, so that the user doesn't get an initial
+// color transition when they load the page and we determine that they'd set their
+// preference to the alternative color
+:root.color-transitions * {
+    transition: background ease-in-out 0.2s;
+}
+
+html,
+body {
     margin: 0;
     padding: 0;
 }
 
 html {
-    background: #CCC;
+    background: var(--color-bgPage);
+
+    font-size: 20px;
 }
 
 body {
-    font-family: 'Inconsolata', monospace;
-    font-size: 20px;
-    color: $fgLight;
-    line-height: 1.2em;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    color: var(--color-fgLight);
+    line-height: $lineHeight;
 }
 
 a {
     text-decoration: none;
-    color: $hyperlink;
+    color: var(--color-hyperlink);
 }
 
 .comment {
-    color: $comment;
+    color: var(--color-comment);
 }
 
-strong, b {
-    color: $bold;
+strong,
+b {
+    color: var(--color-bold);
 }
 
-pre, p, h1, h2, h3, h4, h5 {
+pre,
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
     margin: 0;
     padding: 0;
 }
@@ -48,36 +131,40 @@ h2 {
     font-size: $fontSize;
 
     // We set the height equal to one line
-    height: #{$lineHeight / $fontSize}em;
+    height: $lineHeight;
 
     // Adjust margins above and below, so that we are
     // centered across two lines; i.e. half a line above,
     // half below
-    margin-top: #{$lineHeight / (1 * $fontSize)}em;
-    margin-bottom: #{1 * $lineHeight / (1 * $fontSize)}em;
+    margin-top: $lineHeight;
+    margin-bottom: $lineHeight;
 }
 
 h3 {
     $fontSize: 1.2em;
     font-size: $fontSize;
-    height: #{$lineHeight / $fontSize}em;
-    margin-top: #{$lineHeight / $fontSize}em;
+    height: $lineHeight;
+    margin-top: $lineHeight;
 
-    color: $headingSmall;
+    color: var(--color-headingSmall);
 }
 
 h4 {
     $fontSize: 1em;
     font-size: $fontSize;
-    height: #{$lineHeight / $fontSize}em;
-    margin-top: #{$lineHeight / $fontSize}em;
+    height: $lineHeight;
+    margin-top: $lineHeight;
 
-    color: $headingSmaller;
+    color: var(--color-headingSmaller);
 }
 
 img {
     // Prevent random vertical space below img
     vertical-align: top;
+}
+
+p:has(img) {
+    text-align: center;
 }
 
 .img-small {
@@ -97,12 +184,12 @@ ul li {
 
     &:before {
         content: '*';
-        color: $fgDark;
+        color: var(--color-fgDark);
         margin-left: -2ch;
         margin-right: 1ch;
     }
 
-    &:before + p {
+    &:before+p {
         display: inline-block;
     }
 

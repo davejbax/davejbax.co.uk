@@ -1,17 +1,10 @@
 ---
 layout: default
-title: About &middot; David Baxter
+title: About &middot; Dave Baxter
 ---
 
 ## About
 
-I'm currently in my second year at the University of Manchester, studying for an undergraduate degree in Computer Science.
+I'm a 20-something-year-old living in Manchester, UK. I graduated from the **University of Manchester** in 2022 with a BSc in Computer Science with Industrial Experience. Since then, I've been lucky enough to pursue a career in something I love: tinkering with tech!
 
-My interests include **software engineering** (with experience in a wide variety of languages and tools), **cyber security** (with a focus on pen-testing and reverse engineering), and **artificial intelligence**.
-
-In my spare time, I like to work on side projects. These can be viewed on [Github](https://github.com/davejbax).
-
-### Achivements
-
-*   **Cyber Discovery Elite participant**<br>
-    In 2018, I was one of the 170 individuals to make it through to the final stage (CyberStart Elite) of the [Cyber Discovery](https://www.joincyberdiscovery.com/) programme &mdash; HM Goverment's cyber security programme for students in the UK aged 13-18.
+Outside of the digital world, I enjoy climbing fake rocks, playing Dungeons &amp; Dragons, cooking, and playing guitar. You can probably find me in the local bouldering gym staring bewilderedly at a V3 (or alternatively, [drop me an email]({% link contact.md %}) if you'd like to chat).

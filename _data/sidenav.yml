@@ -2,10 +2,8 @@ links:
   - title: Home
     url: /
   - title: Portfolio
-    url: /portfolio.html  
-  - title: Other Stuff
-    url: /other.html
+    url: /portfolio
   - title: About
-    url: /about.html
+    url: /about
   - title: Contact
-    url: /contact.html
+    url: /contact
