@@ -163,6 +163,10 @@ img {
     vertical-align: top;
 }
 
+p:has(img) {
+    text-align: center;
+}
+
 .img-small {
     height: $lineHeight * 10;
 }
