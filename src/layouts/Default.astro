@@ -1,0 +1,98 @@
+---
+import Nav from '../components/Nav.astro';
+import '../styles/global.scss';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>{title}</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+    rel="stylesheet">
+
+  <!--
+  Do color settings in the head, so that the user doesn't get a flash of their original color setting
+   before it switches to the alternative one.
+   All other scripts are in the footer, since they're not as critical as this.
+  -->
+  <script is:inline>
+    /** CSS class name for turning alternative color on */
+    const COLOR_ALT_CLASS = 'color-alt';
+
+    /** Local storage key for the alternative color setting */
+    const LOCAL_STORAGE_COLOR_ALT = 'use-alternative-color';
+
+    const setAlternativeColor = (enabled) => {
+      const classList = document.documentElement.classList;
+
+      classList.toggle(COLOR_ALT_CLASS, enabled);
+      localStorage.setItem(LOCAL_STORAGE_COLOR_ALT, classList.contains(COLOR_ALT_CLASS) ? 'yes' : 'no');
+    }
+
+    if (localStorage.getItem(LOCAL_STORAGE_COLOR_ALT) !== null && localStorage.getItem(LOCAL_STORAGE_COLOR_ALT) === 'yes') {
+      setAlternativeColor(true);
+    }
+  </script>
+</head>
+
+<body>
+
+  <main class="window">
+    <header class="window__header">
+      <div class="window-buttons">
+        <span class="window-buttons__close"></span><span class="window-buttons__min">
+        </span><span class="window-buttons__max">
+        </span>
+      </div>
+      <div class="window-title">
+        <h1>{title}</h1>
+      </div>
+    </header>
+    <div class="window__body">
+      <aside>
+        <Nav />
+      </aside>
+      <article>
+        <div class="body__line-numbers">
+          {Array.from({ length: 300 }, (_, i) => (
+            <>{i + 1}<br /></>
+          ))}
+        </div>
+        <div>
+          <slot />
+        </div>
+        <br>
+      </article>
+    </div>
+  </main>
+
+  <script is:inline>
+    (function () {
+      // Enable color transitions now that we've established
+      document.documentElement.classList.add('color-transitions');
+
+      // This script is loaded at the end of the page, so element references should work.
+      document.getElementById('toggle-eye-strain')
+        .addEventListener('click', () => {
+          setAlternativeColor();
+        });
+    })();
+  </script>
+
+</body>
+
+</html>

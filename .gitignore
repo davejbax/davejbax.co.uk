@@ -1,9 +1,15 @@
-# Ignore Jekyll metadata
-_site/
-.sass-cache/
-.jekyll-cache/
-.jekyll-metadata/
+# Astro build output
+dist/
 
-# Ignore Bundler folders
-vendor/
-.bundle/
+# Node
+node_modules/
+
+# Astro
+.astro/
+
+# Cloudflare
+.wrangler/
+.dev.vars
+
+# OS
+.DS_Store
