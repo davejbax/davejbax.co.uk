@@ -3,7 +3,10 @@
 	"compatibility_flags": ["global_fetch_strictly_public"],
 	"name": "davejbax-co-uk",
 	"main": "@astrojs/cloudflare/entrypoints/server",
-	"pages_build_output_dir": "./dist",
+	"assets": {
+		"directory": "./dist",
+		"binding": "ASSETS"
+	},
 	"observability": {
 		"enabled": true
 	}
