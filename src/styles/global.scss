@@ -1,6 +1,7 @@
 @use 'vars' as *;
 @use 'window';
 @use 'nav';
+@use 'blog';
 
 :root {
     --color-red: #E3766B;
@@ -22,19 +23,27 @@
     --color-hyperlink: #88c3d5;
     --color-comment: #809151;
     --color-bold: #EEC95A;
+
+    --window-header-bg: var(--color-bgLight);
 }
 
 @mixin lightMode() {
-    --color-bgPage: rgb(230, 227, 215);
+    --color-bgPage: rgb(250, 246, 234);
     --color-bgDark: white;
     --color-bgLessLight: #d8d8d8;
-    --color-bgLight: #c4c1b5;
+    --color-bgLight: #dad5c3;
     --color-fgLight: #333;
     --color-fgDark: #d66f0f;
 
     --color-hyperlink: #3292af;
     --color-comment: #a2c279;
     --color-bold: #d3a118;
+
+    --window-header-bg: linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--color-bgLight), white 20%),
+        color-mix(in srgb, var(--color-bgLight), black 8%)
+    );
 }
 
 // Default to dark mode. I'm a light mode enjoyer, personally, but I think most
@@ -100,6 +109,7 @@ a {
 
 .comment {
     color: var(--color-comment);
+    font-family: 'JetBrains Mono', monospace;
 }
 
 strong,
@@ -123,6 +133,9 @@ p {
 }
 
 h2 {
+    color: var(--color-comment);
+    font-weight: normal;
+    &::before { content: '// '; }
     $fontSize: 1.5em;
     font-size: $fontSize;
 
@@ -132,8 +145,8 @@ h2 {
     // Adjust margins above and below, so that we are
     // centered across two lines; i.e. half a line above,
     // half below
-    margin-top: $lineHeight;
-    margin-bottom: $lineHeight;
+    padding-top: calc($lineHeight / 2);
+    padding-bottom: calc($lineHeight / 2);
 }
 
 h3 {

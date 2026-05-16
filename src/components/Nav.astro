@@ -1,6 +1,7 @@
 ---
 const links = [
   { title: 'Home', url: '/' },
+  { title: 'Blog', url: '/blog' },
   { title: 'Portfolio', url: '/portfolio' },
   { title: 'About', url: '/about' },
   { title: 'Contact', url: '/contact' },
@@ -13,7 +14,7 @@ const currentPath = Astro.url.pathname;
   <div class="gimmick">/home/dave</div>
   <ul>
     {links.map((item) => (
-      <li class={currentPath === item.url ? 'active' : ''}>
+      <li class={currentPath === item.url || (item.url !== '/' && currentPath.startsWith(item.url)) ? 'active' : ''}>
         <a href={item.url}>{item.title}</a>
       </li>
     ))}

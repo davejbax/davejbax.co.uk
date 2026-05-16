@@ -1,0 +1,24 @@
+---
+import Default from '../../layouts/Default.astro';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post: CollectionEntry<'blog'>) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Default title={`${post.data.title} · Dave Baxter`}>
+  <p class="post-meta">{post.data.date}</p>
+  <Content />
+</Default>
