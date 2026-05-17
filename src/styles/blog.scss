@@ -1,5 +1,7 @@
 @use 'vars' as *;
 
+// ─── Blog index ───────────────────────────────────────────────────────────────
+
 .blog-list {
     margin-top: $lineHeight;
     display: flex;
@@ -9,7 +11,6 @@
 .blog-row {
     display: flex;
     gap: 1.4ch;
-    // padding: 0.15rem 0.4rem;
     border-radius: 3px;
     text-decoration: none;
     color: inherit;
@@ -43,8 +44,159 @@
     white-space: nowrap;
 }
 
-.post-meta {
-    color: var(--color-bgLight);
-    font-size: 0.85em;
+// ─── Post TOC sidebar ─────────────────────────────────────────────────────────
+
+.post-toc {
+    width: 100%;
+    height: 100%;
+    padding: $globalPadding;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.post-toc__back {
     margin-bottom: $lineHeight;
+    display: block;
+}
+
+.post-toc__label {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-bgLight);
+    margin-bottom: calc($lineHeight / 2);
+}
+
+.post-toc__list {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li::before { display: none; }
+}
+
+.post-toc__item {
+    display: flex;
+    gap: 0.5ch;
+    padding: 0.2rem 0;
+}
+
+.post-toc__num {
+    color: var(--color-bgLight);
+    flex: 0 0 2ch;
+    user-select: none;
+}
+
+.post-toc__link {
+    color: var(--color-hyperlink);
+    border-left: 2px solid transparent;
+    transition: padding-left 120ms ease, border-color 120ms ease;
+}
+
+.post-toc__item.active .post-toc__link {
+    color: var(--color-fgLight);
+    font-weight: 600;
+    border-left-color: var(--color-bold);
+    padding-left: 0.4rem;
+}
+
+.post-toc__footer {
+    margin-top: auto;
+    padding-top: $globalPadding;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    color: var(--color-bgLight);
+
+    #toggle-eye-strain {
+        padding: 0;
+    }
+}
+
+// ─── Post reader content ──────────────────────────────────────────────────────
+
+.post-content {
+    $marginSmall: 0.9rem;
+    $marginBig: 1.8rem;
+
+    max-width: 33rem;
+    margin: 0 auto;
+    padding: 2rem $globalPadding 4rem;
+
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    line-height: 1.55;
+
+    // Meta should be mono
+    .post-meta {
+        color: var(--color-bgLight);
+        font-family: var(--font-mono);
+        font-size: 0.6rem;
+        margin-bottom: 0.5rem;
+        margin-top: 0;
+    }
+
+    p {
+        margin: 0;
+        margin-bottom: $marginBig;
+    }
+
+    p:has(+ p),
+    p:has(+ pre) {
+        margin-bottom: $marginSmall;
+    }
+
+    pre {
+        margin-bottom: $marginSmall;
+    }
+
+    h1, h2, h3, h4, h5 {
+        font-family: var(--font-mono);
+    }
+
+    h1 {
+        font-weight: 600;
+        line-height: 1em;
+
+        margin: 0;
+        margin-bottom: $marginSmall;
+
+        &::before {
+            content: '# ';
+            color: var(--color-fgDark);
+        }
+    }
+
+    h2 {
+        color: var(--color-fgLight);
+
+        font-weight: 600;
+        height: auto;
+        padding: 0;
+
+        margin: 0;
+        margin-bottom: 0.5rem;
+
+        &::before {
+            content: '## ';
+            color: var(--color-fgDark);
+        }
+    }
+}
+
+
+@media screen and (max-width: $bpTablet) {
+    .post-toc__list,
+    .post-toc__footer,
+    .post-toc__label {
+        display: none;
+    }
+
+    .post-toc__back {
+        margin-bottom: 0;
+    }
 }

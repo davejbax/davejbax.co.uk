@@ -1,12 +1,17 @@
 ---
 import Nav from '../components/Nav.astro';
+import { ClientRouter } from 'astro:transitions';
 import '../styles/global.scss';
+import { Font } from 'astro:assets';
 
 interface Props {
   title: string;
+  windowTitle?: string;
+  variant?: 'post';
 }
 
-const { title } = Astro.props;
+const { title, windowTitle, variant } = Astro.props;
+const isPost = variant === 'post';
 ---
 
 <!DOCTYPE html>
@@ -19,10 +24,10 @@ const { title } = Astro.props;
 
   <title>{title}</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
-    rel="stylesheet">
+  <Font cssVariable='--font-mono' preload />
+  <Font cssVariable='--font-serif' />
+
+  <ClientRouter />
 
   <!--
   Do color settings in the head, so that the user doesn't get a flash of their original color setting
@@ -43,15 +48,38 @@ const { title } = Astro.props;
       localStorage.setItem(LOCAL_STORAGE_COLOR_ALT, classList.contains(COLOR_ALT_CLASS) ? 'yes' : 'no');
     }
 
+    // Set the current color now in the head so we don't get a flash of the wrong color
     if (localStorage.getItem(LOCAL_STORAGE_COLOR_ALT) !== null && localStorage.getItem(LOCAL_STORAGE_COLOR_ALT) === 'yes') {
       setAlternativeColor(true);
     }
+
+    // The color class gets unapplied by the Astro ClientRouter. We need to reapply it on every page load.
+    document.addEventListener('astro:page-load', () => {
+      if (localStorage.getItem(LOCAL_STORAGE_COLOR_ALT) !== null && localStorage.getItem(LOCAL_STORAGE_COLOR_ALT) === 'yes') {
+        setAlternativeColor(true);
+      }
+
+      // Enable color transitions only after setting the color (so that we don't transition in to the new color).
+      // Do this in a new animation frame so that we don't set the color class and transition class simultaneously
+      // (allow repaint first before enabling transitions).
+      requestAnimationFrame(() => {
+        document.documentElement.classList.add('color-transitions');
+      })
+    })
+
+    // Delegated handler for the eye-strain toggle: the bound element gets
+    // replaced during blog-mode swaps, so a one-shot onclick wouldn't survive.
+    document.addEventListener('click', (e) => {
+      const t = e.target;
+      if (t && t.closest && t.closest('#toggle-eye-strain')) {
+        setAlternativeColor();
+      }
+    });
   </script>
 </head>
 
 <body>
-
-  <main class="window">
+  <main class:list={['window', { 'window--post': isPost }]}>
     <header class="window__header">
       <div class="window-buttons">
         <span class="window-buttons__close"></span><span class="window-buttons__min">
@@ -59,20 +87,24 @@ const { title } = Astro.props;
         </span>
       </div>
       <div class="window-title">
-        <h1>{title}</h1>
+        <h1>{windowTitle ?? title}</h1>
       </div>
     </header>
     <div class="window__body">
       <aside>
-        <Nav />
+        <slot name="sidebar">
+          <Nav />
+        </slot>
       </aside>
       <article>
-        <div class="body__line-numbers">
-          {Array.from({ length: 300 }, (_, i) => (
-            <>{i + 1}<br /></>
-          ))}
-        </div>
-        <div>
+        {!isPost && (
+          <div class="body__line-numbers">
+            {Array.from({ length: 300 }, (_, i) => (
+              <>{i + 1}<br /></>
+            ))}
+          </div>
+        )}
+        <div class:list={['body__content', { 'body__content--post': isPost }]}>
           <slot />
         </div>
         <br>
@@ -80,17 +112,8 @@ const { title } = Astro.props;
     </div>
   </main>
 
-  <script is:inline>
-    (function () {
-      // Enable color transitions now that we've established
-      document.documentElement.classList.add('color-transitions');
-
-      // This script is loaded at the end of the page, so element references should work.
-      document.getElementById('toggle-eye-strain')
-        .addEventListener('click', () => {
-          setAlternativeColor();
-        });
-    })();
+  <script>
+    import '../scripts/blogTransitions';
   </script>
 
 </body>

@@ -1,0 +1,38 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+  readTime: string;
+}
+
+const { headings, readTime } = Astro.props;
+const h2s = headings.filter(h => h.depth === 2);
+---
+
+<nav class="post-toc">
+  <a href="/blog" class="post-toc__back">← /blog</a>
+
+  {h2s.length > 0 && (
+    <>
+      <div class="post-toc__label">in this post</div>
+      <ol class="post-toc__list">
+        {h2s.map((h, i) => (
+          <li class="post-toc__item" data-heading-id={h.slug}>
+            <span class="post-toc__num">{String(i + 1).padStart(2, '0')}</span>
+            <a href={`#${h.slug}`} class="post-toc__link">{h.text}</a>
+          </li>
+        ))}
+      </ol>
+    </>
+  )}
+
+  <div class="post-toc__footer">
+    <span class="post-toc__read">{readTime} read</span>
+    <button id="toggle-eye-strain"> mode</button>
+  </div>
+</nav>

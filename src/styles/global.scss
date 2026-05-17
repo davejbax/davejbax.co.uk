@@ -96,7 +96,7 @@ html {
 }
 
 body {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 16px;
     color: var(--color-fgLight);
     line-height: $lineHeight;
@@ -109,7 +109,7 @@ a {
 
 .comment {
     color: var(--color-comment);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-mono);
 }
 
 strong,

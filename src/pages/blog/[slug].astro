@@ -1,6 +1,8 @@
 ---
 import Default from '../../layouts/Default.astro';
+import PostToc from '../../components/PostToc.astro';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { readingTime } from '../../utils/readingTime';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -15,10 +17,23 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
+const readTime = readingTime(post.body);
+const windowTitle = `blog/${post.data.date}-${post.id}.md · Dave Baxter`;
 ---
 
-<Default title={`${post.data.title} · Dave Baxter`}>
-  <p class="post-meta">{post.data.date}</p>
-  <Content />
+<Default
+  title={`${post.data.title} · Dave Baxter`}
+  windowTitle={windowTitle}
+  variant="post"
+>
+  <PostToc slot="sidebar" headings={headings} readTime={readTime} />
+
+  <div class="post-content">
+    <p class="post-meta">{post.data.date} &centerdot; {readTime} read</p>
+    <h1 class="post-title">{post.data.title}</h1>
+    <div class="post-body">
+      <Content />
+    </div>
+  </div>
 </Default>

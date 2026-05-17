@@ -1,19 +1,16 @@
 ---
 import Default from '../layouts/Default.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { readingTime } from '../utils/readingTime';
 
 const posts = (await getCollection('blog'))
   .sort((a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => b.data.date.localeCompare(a.data.date));
-
-function readingTime(body: string): string {
-  const words = body.trim().split(/\s+/).length;
-  return `${Math.ceil(words / 200)} min`;
-}
 ---
 
 <Default title="Blog · Dave Baxter">
   <h2>Blog</h2>
   <div class="blog-list">
+    {posts.length === 0 && <span>There's nothing here... yet. Stay tuned!</span>}
     {posts.map((post: CollectionEntry<'blog'>, i: number) => (
       <a href={`/blog/${post.id}`} class="blog-row">
         <span class="blog-row__date">{post.data.date}</span>

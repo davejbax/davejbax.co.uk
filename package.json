@@ -21,6 +21,7 @@
     "vite": "^7"
   },
   "devDependencies": {
+    "@hbsnow/rehype-sectionize": "^1.0.7",
     "sass-embedded": "^1.99.0"
   }
 }

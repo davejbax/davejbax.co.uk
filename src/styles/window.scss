@@ -6,6 +6,9 @@
 
 */
 
+$dilateDur: 760ms;
+$dilateEase: cubic-bezier(0.22, 1, 0.36, 1);
+
 .window {
     width: 90vw;
     max-width: 960px;
@@ -17,6 +20,22 @@
 
     // box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     box-shadow: rgba(40, 30, 15, 0.3) 0px 40px 80px -16px, rgba(40, 30, 15, 0.1) 0px 12px 28px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+
+    background: var(--color-bgDark);
+
+    transition:
+        width $dilateDur $dilateEase,
+        max-width $dilateDur $dilateEase,
+        height $dilateDur $dilateEase,
+        box-shadow $dilateDur $dilateEase;
+}
+
+:root.color-transitions main.window {
+    transition:
+        width $dilateDur $dilateEase,
+        max-width $dilateDur $dilateEase,
+        height $dilateDur $dilateEase,
+        box-shadow $dilateDur $dilateEase;
 }
 
 /*
@@ -118,9 +137,14 @@ $headerHeight: 1.5rem;
 }
 
 .window__body>aside {
-    flex: 0;
+    flex: 0 0 160px;
+    width: 160px;
 
     border-right: 1px solid var(--color-bgLight);
+
+    transition:
+        flex-basis $dilateDur $dilateEase,
+        width $dilateDur $dilateEase;
 }
 
 $lineNumWidth: 4ch;
@@ -165,6 +189,44 @@ $lineNumWidth: 4ch;
 }
 
 /*
+
+    Expanded window — blog post reader mode
+
+*/
+.window--post {
+    width: 92vw;
+    max-width: 92vw;
+    height: 92vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    .window__body {
+        overflow: hidden;
+        flex: 1;
+    }
+
+    .window__body > aside {
+        flex: 0 0 content;
+        width: 320px;
+        overflow-y: auto;
+    }
+
+    .window__body > article {
+        padding: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .window,
+    .window__body > aside {
+        transition: none;
+    }
+}
+
+/*
     Mobile
 */
 
@@ -176,9 +238,10 @@ $lineNumWidth: 4ch;
     }
 
     .window {
-        width: auto;
+        width: 100%;
         margin: 0;
         min-height: 100%;
+        max-width: 100%;
 
         // Having a border radius exposes the background, which looks weird
         // on a square screen...
@@ -197,9 +260,14 @@ $lineNumWidth: 4ch;
         flex-direction: column;
     }
 
-    .window__body>aside {
+    .window__body > aside {
         border-right: none;
         border-bottom: 2px solid var(--color-bgLight);
+        width: auto;
+    }
+
+    .window--post .window__body > aside {
+        width: auto;
     }
 
 }
